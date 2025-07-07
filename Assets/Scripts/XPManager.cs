@@ -3,25 +3,33 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class XPButton : MonoBehaviour
+public class XPManager : MonoBehaviour
 {
     [SerializeField]
     Slider xpSlider;
-    [SerializeField]
-    TextMeshProUGUI xpText;
     [SerializeField]
     float xpToAdd;
     [SerializeField]
     ParticleSystem xpVFX;
 
-    Button xpButton;
     float currentXP;
     float xpForNextLevel;
     void Start()
     {
-        xpButton = GetComponent<Button>();
-        xpButton.onClick.AddListener(AddXP);
         xpForNextLevel = 20;
+    }
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space)) // Subir XP
+        {
+            AddXP();
+        }
+
+        if (Input.GetKeyDown(KeyCode.R)) // Reiniciar XP
+        {
+            xpSlider.value = 0;
+            xpForNextLevel = 20;
+        }
     }
 
     void AddXP()
@@ -29,25 +37,21 @@ public class XPButton : MonoBehaviour
         currentXP = xpSlider.value;
         StartCoroutine(AnimateUIElements());//xpSlider.value += xpToAdd;
         Mathf.Clamp(xpSlider.value, 0, xpSlider.maxValue);
-        xpText.text = "+ " + xpToAdd + " XP!";
-        xpText.gameObject.SetActive(true);
-        xpVFX.Play();
+        //xpVFX.Play();
     }
 
     IEnumerator AnimateUIElements()
     {
-        yield return new WaitForSeconds(0.5f);
-        xpText.gameObject.SetActive(false);
-
         while (xpSlider.value < currentXP + xpToAdd)
         {
-            xpSlider.value += 5;
-            yield return new WaitForSeconds(0.07f);
+            xpSlider.value += 0.5f;
             if (xpSlider.value == xpForNextLevel)
             {
                 xpVFX.Play();
+                xpForNextLevel += 20;
             }
-            Debug.Log(xpSlider.value);
+            yield return new WaitForSeconds(0.05f);
+            //Debug.Log(xpSlider.value);
         }
     }
 }
