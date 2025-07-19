@@ -11,6 +11,8 @@ public class XPManager : MonoBehaviour
     float xpToAdd;
     [SerializeField]
     ParticleSystem xpVFX;
+    [SerializeField]
+    GameObject levelUpPanel;
 
     float currentXP;
     float xpForNextLevel;
@@ -49,6 +51,7 @@ public class XPManager : MonoBehaviour
             {
                 xpVFX.Play();
                 xpForNextLevel += 20;
+                levelUpPanel.gameObject.SetActive(true);
             }
             yield return new WaitForSeconds(0.05f);
             //Debug.Log(xpSlider.value);
