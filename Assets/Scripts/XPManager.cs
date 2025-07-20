@@ -31,6 +31,7 @@ public class XPManager : MonoBehaviour
         {
             xpSlider.value = 0;
             xpForNextLevel = 20;
+            currentXP = 0;
         }
     }
 
