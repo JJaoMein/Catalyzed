@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class WeeklyTasksUI : MonoBehaviour
 {
     public GameObject activityInfoPanel;
-    public Text descriptionText;
+    //public Text descriptionText;
 
     // Simulación de descripciones
     private string[] taskDescriptions = {
@@ -19,7 +19,7 @@ public class WeeklyTasksUI : MonoBehaviour
     }
     public void ShowPopup(int index)
     {
-        descriptionText.text = taskDescriptions[index];
+        //descriptionText.text = taskDescriptions[index];
         activityInfoPanel.SetActive(true);
     }
 

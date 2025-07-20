@@ -1,5 +1,7 @@
+using NUnit.Framework;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour
@@ -9,7 +11,9 @@ public class UIManager : MonoBehaviour
     public GameObject panelBattlePass;
     public GameObject panelProfile;
     public GameObject panelButtonNav;
-    
+    [SerializeField] List<GameObject> weekPanels = new();
+    ww
+
 
     private void Start()
     {
@@ -17,7 +21,7 @@ public class UIManager : MonoBehaviour
         panelButtonNav.SetActive(false);
         StartCoroutine(disbaleStrikerPanel());
     }
-    
+
     IEnumerator disbaleStrikerPanel()
     {
         yield return new WaitForSeconds(1);
@@ -37,7 +41,7 @@ public class UIManager : MonoBehaviour
         panelTasks.SetActive(false);
         panelBattlePass.SetActive(true);
         panelProfile.SetActive(false);
-        
+
     }
 
     public void ShowProfile()
@@ -45,6 +49,24 @@ public class UIManager : MonoBehaviour
         panelTasks.SetActive(false);
         panelBattlePass.SetActive(false);
         panelProfile.SetActive(true);
-        
+
+    }
+
+    public void ShowWeekPanel(int currentDay)
+    {
+        //panelTasks.SetActive(false);
+        panelBattlePass.SetActive(false);
+        panelProfile.SetActive(false);
+        foreach (GameObject panel in weekPanels)
+        {
+            panel.SetActive(false);
+        }
+        weekPanels[currentDay].SetActive(true);
+
+    } 
+
+    public void ActivateDetailsPanel(int currentDay)
+    {
+        detailPanels[currentDay].SetActive(true);
     }
 }
