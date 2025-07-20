@@ -20,7 +20,7 @@ public class UIManager : MonoBehaviour
     
     IEnumerator disbaleStrikerPanel()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1);
         panelButtonNav.SetActive(true);
         panelStriker.SetActive(false);
     }
