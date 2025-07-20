@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour
@@ -7,10 +8,21 @@ public class UIManager : MonoBehaviour
     public GameObject panelTasks;
     public GameObject panelBattlePass;
     public GameObject panelProfile;
+    public GameObject panelButtonNav;
+    
 
     private void Start()
     {
         panelStriker.SetActive(true);
+        panelButtonNav.SetActive(false);
+        StartCoroutine(disbaleStrikerPanel());
+    }
+    
+    IEnumerator disbaleStrikerPanel()
+    {
+        yield return new WaitForSeconds(3);
+        panelButtonNav.SetActive(true);
+        panelStriker.SetActive(false);
     }
 
     public void ShowTasks()
@@ -18,7 +30,6 @@ public class UIManager : MonoBehaviour
         panelTasks.SetActive(true);
         panelBattlePass.SetActive(false);
         panelProfile.SetActive(false);
-        panelStriker.SetActive(false);
     }
 
     public void ShowBattlePass()
@@ -26,7 +37,6 @@ public class UIManager : MonoBehaviour
         panelTasks.SetActive(false);
         panelBattlePass.SetActive(true);
         panelProfile.SetActive(false);
-        panelStriker.SetActive(false);
         
     }
 
@@ -35,7 +45,6 @@ public class UIManager : MonoBehaviour
         panelTasks.SetActive(false);
         panelBattlePass.SetActive(false);
         panelProfile.SetActive(true);
-        panelStriker.SetActive(false);
         
     }
 }
