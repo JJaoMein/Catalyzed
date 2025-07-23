@@ -12,7 +12,7 @@ public class UIManager : MonoBehaviour
     public GameObject panelProfile;
     public GameObject panelButtonNav;
     [SerializeField] List<GameObject> weekPanels = new();
-    ww
+    [SerializeField] List<GameObject> detailPanels = new();
 
 
     private void Start()
@@ -65,7 +65,7 @@ public class UIManager : MonoBehaviour
 
     } 
 
-    public void ActivateDetailsPanel(int currentDay)
+    public void ShowDetailsPanel(int currentDay)
     {
         detailPanels[currentDay].SetActive(true);
     }
